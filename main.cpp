@@ -43,42 +43,6 @@ int main()
 	static_assert(std::is_same<list11_t, type_list_t<float, int, long, char, double>>::value, "no");
 	static_assert(std::is_same<list12_t, type_list_t<int, float, long, char, double>>::value, "no");
 	static_assert(std::is_same<list13_t, type_list_t<int, long, char, double, float>>::value, "no");
-	/*RB_tree<char> tree;
-	Node<char> a;
-	Node<char> b;
-	Node<char> c;
-	Node<char> d;
-	a.number = 0;
-	b.number = 1;
-	c.number = 2;
-	d.number = 3;
-	Node<char> e;
-	Node<char> h;
-	Node<char> g;
-	Node<char> f;
-	e.number = 4;
-	h.number = 5;
-	g.number = 6;
-	f.number = 7;
-
-
-	tree.insert_node(&a);
-	tree.insert_node(&b);
-	tree.insert_node(&c);
-	tree.insert_node(&d);
-	tree.insert_node(&e);
-	tree.insert_node(&h);
-	tree.insert_node(&g);
-	tree.insert_node(&f);
-
-	std::cout << "pre_order : " << std::endl;
-	tree.display(tree.root);
-	std::cout << "in_order print : " << std::endl;
-	tree.or_display(tree.root);
-	std::cout << "post_order print : " << std::endl;
-	tree.la_display(tree.root);
-	std::cout << "²ãĞò±ãÀû :  " << std::endl;
-	tree.layer_display(tree.root);*/
 
 
 	return 0;
