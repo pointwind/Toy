@@ -15,17 +15,17 @@ template<typename T,typename ...next_t>struct type_node_t<T,next_t...>
 template<>struct type_node_t<>{};
 
 
-template<typename iter_t,size_t I>struct type_node_move_t//Ñ°ÕÒ
+template<typename iter_t,size_t I>struct type_node_move_t//å¯»æ‰¾
 {
 	using iter = typename type_node_move_t<typename iter_t::next,I-1>::iter;
 };
-template<typename iter_t>struct type_node_move_t<iter_t,0>//ÕÒµ½
+template<typename iter_t>struct type_node_move_t<iter_t,0>//æ‰¾åˆ°
 {
 	using iter = iter_t;
 };
 
 
-template<bool found,size_t I, class list_t, typename ...args>struct type_list_get_type_t//ÕÒÖ¸¶¨Î»ÖÃÀàĞÍ
+template<bool found,size_t I, class list_t, typename ...args>struct type_list_get_type_t//æ‰¾æŒ‡å®šä½ç½®ç±»å‹
 {
 	using iter = typename type_node_move_t<typename list_t::begin, I >::iter;
 	using type = typename iter::type;
@@ -33,18 +33,18 @@ template<bool found,size_t I, class list_t, typename ...args>struct type_list_ge
 
 template<size_t I, class list_t, typename ...other_t>struct type_list_get_list_t;
 
-template<size_t I, class list_t, typename ...others_t>struct type_list_get_type_t<false,I,list_t,others_t...>//Î´ÕÒµ½
+template<size_t I, class list_t, typename ...others_t>struct type_list_get_type_t<false,I,list_t,others_t...>//æœªæ‰¾åˆ°
 {
 	using type =typename  type_list_get_list_t<I - list_t::size, others_t...>::type;
 };
 
-template<size_t I,class list_t,typename ...other_t>struct type_list_get_list_t//ÎªÁËget
+template<size_t I,class list_t,typename ...other_t>struct type_list_get_list_t//ä¸ºäº†get
 {
-	using type = typename type_list_get_type_t<(I < list_t::size), I, list_t, other_t...>::type;//´Ë´¦ÒòÎªÊÇsize_t£¬¸ºÊı²»ÎªËû£¬¹ı´ó·è¿ñÖØ¸´¼õsize£¬Ö±µ½Ğ¡ÓÚsize£¬È»ºóÕÒµ½
+	using type = typename type_list_get_type_t<(I < list_t::size), I, list_t, other_t...>::type;//æ­¤å¤„å› ä¸ºæ˜¯size_tï¼Œè´Ÿæ•°ä¸ä¸ºä»–ï¼Œè¿‡å¤§ç–¯ç‹‚é‡å¤å‡sizeï¼Œç›´åˆ°å°äºsizeï¼Œç„¶åæ‰¾åˆ°
 };
 template<class ...list_t>struct type_list_get_t
 {
-	template<size_t I>struct get//ÕâÑùÉè¼ÆÎªÁËÊ¹ÓÃ
+	template<size_t I>struct get//è¿™æ ·è®¾è®¡ä¸ºäº†ä½¿ç”¨
 	{
 		using type =typename type_list_get_list_t<I,list_t...>::type;
 	};
@@ -55,10 +55,6 @@ template<typename T, typename ...args>struct list_node_pop_front_t
 	using type = type_list_t<args...>;
 };
 template<class list_t,class I>struct type_list_get_first_part_t;
-/*template<class list_t,size_t ...I>struct type_list_get_first_part_t<list_t,std::integer_sequence<size_t,I...>>
-{
-	using list = type_list_t<typename list_t::template get<I>::type...>;
-};*/
 template<class get_t, size_t B, class T>struct type_list_builder_t;
 template<class get_t, size_t B, size_t ...I>struct type_list_builder_t<get_t, B, std::integer_sequence<size_t, I...>>
 {
