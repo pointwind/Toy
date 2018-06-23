@@ -1,4 +1,4 @@
-﻿#include<type_traits>
+#include<type_traits>
 #include<iostream>
 #include <algorithm>
 #include <functional>
@@ -39,7 +39,5 @@ int main()
 {
 	std::vector<int> a{3,1,5,8};
 	std::cout << maxCoins(a, [](const auto& lhs_num, const auto& rhs_num) {return lhs_num > rhs_num ? lhs_num : rhs_num; });
-
-
 	return 0;
 }
